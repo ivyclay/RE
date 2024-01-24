@@ -1,0 +1,33 @@
+Property Sale requires authentication using an ownership key. The sale opens escrow at the title company with the public part of a newly created ownership key. 		
+A Dogecoin is deposited on that key, call the amount T. Additionally the property has a digital SPDS & CLUE from the seller, and an identification key which has the public part in the certificate.		
+ This allows the seller to disclose property details to third parties.		
+		
+When the property is sold, the following protocol is used:		
+
+1. The buyer generates a nonce (random number) and asks the seller to accept the buyer's offer and send them  (SPDS, CLUE, HOA info) all related disclosures.
+
+2. The seller gives the contract that nonce, and the seller returns the contract with a data structure signed with its identification key. 		
+The data contains the nonce, the property's public records, disclosure documents from seller, the public key of the seller, and the transaction+merkle branch which transferred ownership last time. 		
+This ensures the buyer knows what they are getting and that it came from the real seller (it's not a replay).		
+		
+		
+3. The seller selects a key to receive the earnest funds payment, k1, and names their price P.		
+	Or the seller selects a key to open escrow with a title company {}	
+		Seller-carry contracts (with title or just smart contract?)
+		
+4. The buyer generates a new ownership key, k2.		
+		
+5. The buyer creates a transaction with two inputs and two outputs. The first input signs for P coins. The second input is connected to the output holding T coins for the ownership address. 		
+The first output sends P coins to k1 and the second output sends T coins to k2. This transaction is not valid because only the first input can be signed. The buyer passes this partially complete transaction to the seller, who then signs the second input with the car's current ownership key and broadcasts the transaction.		
+The buyer passes this partially complete transaction to the seller, who then signs the second input with the property's current ownership key and broadcasts the transaction.		
+		
+6. They wait for some confirmations.		
+		
+7. The buyer presents the property with the Dogecoin transaction, a merkle branch linking it to the block header and then enough block headers to fill in the gap from the property's current ownership transaction. 		
+Title (or smart contract alone) sees that the new transaction re-assigns ownership and is further along in the chain than its current one, plus it has enough work piled on top to be sure the tx won't be reversed.		
+ It then updates its ownership information. Smart contract needs just enough data to be able to connect future block headers to the one it was previously presented with.		
+		
+In practice this process would likely be handled using smartphones with NFC hardware -- the act of touching the phone containing the ownership key to the dashboard would start this dApp.
+
+After clearing all contingencies, the money can be paid, deal finalized & deed recorded. 		
+		
