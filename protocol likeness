@@ -1,4 +1,4 @@
-Property Sale requires authentication using an ownership key. The sale opens escrow at the title company with the public part of a newly created ownership key. 		
+Sale requires authentication using an ownership key. The sale opens escrow with the public part of a newly created ownership key. 		
 A Dogecoin is deposited on that key, call the amount T. Additionally the property has a digital SPDS & CLUE from the seller, and an identification key which has the public part in the certificate.		
  This allows the seller to disclose property details to third parties.		
 		
