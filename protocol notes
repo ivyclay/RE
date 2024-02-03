@@ -1,3 +1,43 @@
+///To ensure ability to update the legal language and terms of our purchase contract templates without having to redeploy the entire contract, we can separate the legal language and terms 
+from the contract core logic so we can update legal language and terms without affecting the core functionality of the contract. We can store the legal language and terms in a separate file 
+or database off-chain, and reference them in our Solidity contract using a hash or identifier. This way, when we need to update the legal language and terms, we can simply update the 
+off-chain file or database, and the changes will be reflected in the contract.
+
+Here's an example of how we can separate the legal language and terms from the contract core logic:
+
+Create a JSON file or database with the legal language and terms, for example:
+json
+{
+  "legal_terms": {
+    "version": "1.0",
+    "terms": "This is the legal language and terms for the purchase contract."
+  }
+}
+In our Solidity contract, reference the legal language and terms using a hash or identifier, for example:
+solidity
+pragma solidity ^0.8.0;
+
+contract PurchaseContract {
+    bytes32 public legalTermsHash;
+
+    constructor(bytes32 _legalTermsHash) {
+        legalTermsHash = _legalTermsHash;
+    }
+
+    function getLegalTerms() public view returns (string memory) {
+        // Retrieve the legal language and terms from the off-chain file or database
+        // using the legalTermsHash and return the terms
+    }
+}
+To update the legal language and terms, we update the off-chain file or database and deploy a new version of the contract with the updated legalTermsHash.
+
+By separating the legal language and terms from the contract core logic, we can make updates to the legal language and terms without having to redeploy the entire contract, which can save
+you time and gas fees. 
+
+That solves the forms updating problem.
+
+///Following is a very basic RE protocol likeness
+
 Sale requires authentication using an ownership key. The sale opens escrow with the public part of a newly created ownership key. 		
 A Dogecoin is deposited on that key, call the amount T. Additionally the property has a digital SPDS & CLUE from the seller, and an identification key which has the public part in the certificate.		
  This allows the seller to disclose property details to third parties.		
