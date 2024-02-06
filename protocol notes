@@ -1,3 +1,85 @@
+pragma solidity ^0.8.0;
+
+contract RealEstate {
+    
+    // Property struct to store property details
+    struct Property {
+        uint propertyId;
+        string address;
+        uint price;
+        address payable owner;
+        bool isSold;
+    }
+
+    // Mapping to store properties
+    mapping(uint => Property) public properties;
+    
+    // Events to emit when properties are added and sold
+    event PropertyAdded(uint indexed propertyId, string address, uint price);
+    event PropertySold(uint indexed propertyId, address indexed buyer, uint price);
+
+    constructor() {}
+
+    // Function to add a new property
+    function addProperty(uint _propertyId, string memory _address, uint _price) public {
+        require(_propertyId > 0, "Invalid property ID.");
+        require(bytes(_address).length > 0, "Invalid address.");
+        require(_price > 0, "Invalid price.");
+
+        // Check if property is already added
+        require(!properties[_propertyId].isSold, "Property is already sold.");
+
+        // Create a new property
+        Property memory newProperty = Property(_propertyId, _address, _price, msg.sender, false);
+
+        // Store the property
+        properties[_propertyId] = newProperty;
+
+        // Emit event
+        emit PropertyAdded(_propertyId, _address, _price);
+    }
+
+    // Function to buy a property
+    function buyProperty(uint _propertyId) public payable {
+        require(_propertyId > 0, "Invalid property ID.");
+
+        // Fetch the property
+        Property memory property = properties[_propertyId];
+
+        // Check if property exists and is not sold
+        require(property.propertyId > 0 && !property.isSold, "Invalid or sold property.");
+
+        // Check if the buyer sent enough ether
+        require(msg.value >= property.price, "Insufficient funds.");
+
+        // Transfer ownership
+________________________________________________________________________________________________________________________________________________________________________________
+/// to deploy - replace the following code with truffle.config:
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const mnemonic = 'your_mnemonic_phrase_here';
+
+module.exports = {
+  networks: {
+    development: {
+      host: '127.0.0.1',
+      port: 7545,
+      network_id: '*',
+    },
+    goerli: {
+      provider: () => new HDWalletProvider(mnemonic, 'goerli_rpc_url_here'),
+      network_id: 5,
+      gas: 4600000,
+      gasPrice: 10000000000,
+    },
+  },
+  compilers: {
+    solc: {
+      version: '0.8.4',
+    },
+  },
+};
+
+
 ///To ensure our ability to update the legal language and terms of our purchase contract and disclosure templates without having to redeploy the entire contract, we can separate the legal language 
 and terms from the contract core logic so we can update legal language and terms without affecting the core functionality of the contract. We can store the legal language and terms in a separate file 
 or database off-chain, and reference them in our Solidity contract using a hash or identifier. This way, when we need to update the legal language and terms, we can simply update the 
