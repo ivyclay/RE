@@ -117,6 +117,55 @@ By separating the legal language and terms from the contract core logic, we can 
 you time and gas fees. 
 
 That solves the forms updating problem.
+_____________________________________________________________________________________________________________________________________________________________________
+
+///Digital Signature Feature: The following code demonstrates how to sign and verify a message using the Elliptic Curve Digital Signature Algorithm (ECDSA) in Solidity.
+
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+
+contract SignatureExample {
+    using ECDSA for bytes32;
+
+    function signMessage(bytes32 messageHash, bytes32 r, bytes32 s, uint8 v) public pure returns (address) {
+        return messageHash.toEthSignedMessageHash().recover(r, s, v);
+    }
+
+    function verifySignature(address signer, bytes32 messageHash, bytes32 r, bytes32 s, uint8 v) public pure returns (bool) {
+        return signer == messageHash.toEthSignedMessageHash().recover(r, s, v);
+    }
+}
+
+______________________________________________________________________________________________________________________________________________________________________________
+
+/// a smart contract template in Solidity that has placeholders for inserting your own custom contracts. This template is based on the popular ERC-721 standard for non-fungible tokens (NFTs). You can replace the placeholders with your custom code to create a unique smart contract.
+
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract MyCustomContract is ERC721, Ownable {
+    constructor() ERC721("MyCustomContract", "MCC") {
+        // Custom code here
+    }
+
+    function mint(address to, uint256 tokenId) public onlyOwner {
+        _mint(to, tokenId);
+        // Custom code here
+    }
+
+    function burn(uint256 tokenId) public {
+        _burn(tokenId);
+        // Custom code here
+    }
+
+    // Custom contract code here
+}
+
+____________________________________________________________________________________________________________________________________________________________________________________
+
 
 ///Foundational RE smart contract protocol likeness:
 
