@@ -79,6 +79,7 @@ module.exports = {
   },
 };
 
+_______________________________________________________________________________________________________________________________________________________________________________
 
 ///To ensure our ability to update the legal language and terms of our purchase contract and disclosure templates without having to redeploy the entire contract, we can separate the legal language 
 and terms from the contract core logic so we can update legal language and terms without affecting the core functionality of the contract. We can store the legal language and terms in a separate file 
