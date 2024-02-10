@@ -7,9 +7,9 @@ Blockchain technology offers a solution by providing a transparent, secure, and 
 
 This dApp, written in Solidity, will be free for users, open-source and decentralized. Local third-party intermediaries such as realtors, lenders, and title companies pay a fee for the lead generation from the platform if the user requests their assistance. By separating legal language and core contract logic, using a proxy contract for upgradability, minimizing on-chain data using hash identifiers, only requiring the eSign pages and deed NFT to be stored on-chain, implementing a governance mechanism, and incorporating AI with human review, contracts used can adapt to changing local legal requirements over time. 
 
-Property records will be stored on-chain, with tokenized deeds offering a verifiable way to decentralize and govern private ownership rights. The goal is to replace the outdated legacy system of deed recordation, storage, and upkeep with our more efficient, cost-effective, and globally accessible solution.
+Property records will be stored on-chain using maps, with tokenized deeds offering a verifiable way to decentralize and govern private ownership rights. Every NFT deed gets highlighted on the map. The goal is to replace outdated legacy systems of deed recordation, storage, and upkeep with a more efficient, cost-effective, and globally accessible solution. 
 
-Transactions will be conducted using Dogecoin, ensuring the lowest processing fees on earth. This platform will not only revolutionize the real estate industry but also contribute to a more decentralized and equitable global economy.
+Transactions will be conducted using Dogecoin on the world's greatest decentralized exchange (coming soon), ensuring the lowest processing fees on earth. This platform will not only revolutionize the real estate industry but also contribute to a more decentralized and equitable global economy.
 
 
 
