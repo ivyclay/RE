@@ -1,7 +1,7 @@
 
 Revolutionizing Real Estate with Blockchain
 
-In the world of finance, Satoshi and Billy revolutionized money, while Vitalik and friends created a decentralized internet. The next big challenge lies in real estate, the largest asset class globally. Outdated systems have long plagued the industry, causing unnecessary hardships for people, particularly in less free societies where citizens don't have the resources to hire middlemen to enforce their private property rights. A smart contract has the potential to be legally enforceable. In Arizona, where I broker real estate, they are. That's where this dApp will rollout first.
+In the world of finance, Satoshi and Billy revolutionized money, while Vitalik and friends created a decentralized internet. The next big challenge lies in real estate, the largest asset class globally. Outdated systems have long plagued the industry, causing unnecessary hardships for people, particularly in less free societies where citizens don't have the resources to hire middlemen to enforce their private property rights or sell their real estate for them. A smart contract has the potential to be legally enforceable. In Arizona, where I broker real estate, they are. That's where this dApp will rollout first.
 
 Blockchain technology offers a solution by providing a transparent, secure, and efficient way to trade real estate. By leveraging smart contracts, NFT deeds, digital identity verifiers, decentralized file storage, and AI, we can create an all-in-one, peer-to-peer (P2P) real estate platform for both sellers and buyers.
 
