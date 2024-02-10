@@ -1,0 +1,54 @@
+pragma solidity ^0.8.0;
+
+contract Insurance {
+    // Struct to store insurance policy data
+    struct Policy {
+        address payable insured;
+        uint256 amount;
+        uint256 startDate;
+        uint256 endDate;
+    }
+
+    // Mapping to store policies
+    mapping(uint256 => Policy) public policies;
+    
+    // Counter to keep track of policy count
+    uint256 public policyCount;
+
+    // Event to notify clients about new policies
+    event PolicyCreated(uint256 id, address insured, uint256 amount, uint256 startDate, uint256 endDate);
+
+    // Function to create a new insurance policy
+    function createPolicy(uint256 _amount, uint256 _duration) external payable {
+        require(_duration > 0, "Duration must be greater than 0.");
+        require(msg.value == _amount, "Value must match the specified amount.");
+
+        // Create a new policy
+        Policy storage newPolicy = policies[policyCount];
+        newPolicy.insured = payable(msg.sender);
+        newPolicy.amount = _amount;
+        newPolicy.startDate = block.timestamp;
+        newPolicy.endDate = block.timestamp + _duration;
+
+        // Increase the policy count
+        policyCount++;
+
+        // Trigger event
+        emit PolicyCreated(policyCount, msg.sender, _amount, block.timestamp, newPolicy.endDate);
+    }
+
+    // Function to claim insurance
+    function claimInsurance(uint256 _policyId) external {
+        Policy storage policy = policies[_policyId];
+
+        require(policy.insured == msg.sender, "Only the insured can claim the policy.");
+        require(block.timestamp >= policy.endDate, "Policy has not expired.");
+
+        // Pay the insured amount
+        (bool success, ) = policy.insured.call{value: policy.amount}("");
+        require(success, "Transfer failed.");
+
+        // Delete the policy
+        delete policies[_policyId];
+    }
+}
