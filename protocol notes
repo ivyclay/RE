@@ -1,3 +1,64 @@
+
+
+
+///to create and deploy an NFT project on the Dogechain network: 
+
+pragma solidity ^0.8.4;
+
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract MyNFT is ERC721, Ownable {
+    constructor() ERC721("MyNFT", "MNFT") {}
+
+    function mintNFT(address recipient, string memory tokenURI) public onlyOwner {
+        uint256 newTokenId = totalSupply().add(1);
+        _mint(recipient, newTokenId);
+        _setTokenURI(newTokenId, tokenURI);
+    }
+}
+
+///dogechain
+
+pragma solidity ^0.8.4;
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract RealEstateNFT is ERC721, Ownable {
+    uint256 public totalSupply;
+
+    struct Property {
+        string propertyAddress;
+        uint256 price;
+        bool isSold;
+    }
+
+    mapping(uint256 => Property) public properties;
+    mapping(uint256 => address) public propertyOwners;
+
+    constructor() ERC721("RealEstateNFT", "RENFT") {}
+
+    function createProperty(string memory _propertyAddress, uint256 _price) external onlyOwner {
+        uint256 propertyId = totalSupply++;
+        properties[propertyId] = Property(_propertyAddress, _price, false);
+    }
+
+    function buyProperty(uint256 _propertyId) external payable {
+        require(msg.value >= properties[_propertyId].price, "Insufficient funds");
+        require(!properties[_propertyId].isSold, "Property is already sold");
+
+        propertyOwners[_propertyId] = msg.sender;
+        properties[_propertyId].isSold = true;
+
+        _safeMint(msg.sender, _propertyId);
+    }
+
+    function getProperty(uint256 _propertyId) external view returns (string memory, uint256, bool) {
+        return (properties[_propertyId].propertyAddress, properties[_propertyId].price, properties[_propertyId].isSold);
+
+___________
+
+
 pragma solidity ^0.8.0;
 
 contract RealEstate {
@@ -140,7 +201,9 @@ contract SignatureExample {
 
 ______________________________________________________________________________________________________________________________________________________________________________
 
-/// a smart contract template in Solidity that has placeholders for inserting your own custom contracts. This template is based on the popular ERC-721 standard for non-fungible tokens (NFTs). You can replace the placeholders with your custom code to create a unique smart contract.
+/// a smart contract template in Solidity that has placeholders for inserting your own custom contracts. 
+This template is based on ERC-721 standard for NFTs. 
+You can replace the placeholders with your custom code to create a unique smart contract.///
 
 pragma solidity ^0.8.0;
 
