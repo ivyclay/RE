@@ -1,5 +1,42 @@
+Listing/Seller/FSBO: 
 
+}
 
+contract Escrow {
+address public nftAddress; 
+address payable public seller' address public seller; 
+address payable optional lender;
+address payable optional listing real estate broker;
+address payable optional listing buyer broker;
+address payable optional title company;
+address payable owner's title insurance; 
+address payable optional notary;
+address payable optional home warranty; 
+address payable optional HOA; 
+address payable optional inspector; 
+address payable optional HVAC; 
+address payable optional Roofer;
+address payable optional Pool;
+address payable optional Landscaping;
+address payable optional Maintenance-other;
+address payable optional appraiser;
+address payable optional Moving company;
+address payable public Tax Assessments;
+address payable public county taxes;
+address payable public optional payoff first loan;
+address payable public optional payoff second lien;
+address payable public optional payoff third lien;
+address payable public optional payoff fourth lien;
+address payable public optional payoff fifth lien;
+address payable public optional payoff sixth lien;
+address payable public optional payoff seventh lien;
+address payable public optional payoff eighth lien;
+address payable public optional payoff ninth lien;
+address payable public optional payoff tenth lien;
+
+____________________________________________________________________________________________________________________________________________________________________________
+
+ 
 
 ///to create and deploy an NFT project on the Dogechain network: 
 
