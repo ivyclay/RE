@@ -8,11 +8,11 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 contract Open House Realty is ERC721URIStorage {
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
-  address SellerContract;
+  address marketplaceContract;
   event NFTMinted(uint256);
 
-  constructor(address _SellerContract) ERC721 ///design to pull from active listings mls# as example:/// ("6591070", "85259") {
-    SellerContract = _SellerContract;
+  constructor(address _marketplaceContract) ERC721 ///design to pull from active listings mls# as example:/// ("6591070", "85259") {
+    marketplaceContract = _marketplaceContract;
   }
 
   function mint(string memory _tokenURI) public {
@@ -23,8 +23,6 @@ contract Open House Realty is ERC721URIStorage {
     setApprovalForAll(marketplaceContract, true);
     emit NFTMinted(newTokenId);
   }
-}
-
 
 Listing/Seller/FSBO: 
 
@@ -62,7 +60,8 @@ address payable public optional payoff eighth lien;
 address payable public optional payoff ninth lien;
 address payable public optional payoff tenth lien;
 
-mapping (unint256
+mapping (unint256 ///this will be the property ID the NFT address///=> bool ///t or f is the property listed///) public isListed
+mapping (uni..
 
 ____________________________________________________________________________________________________________________________________________________________________________
 
@@ -120,8 +119,10 @@ contract RealEstateNFT is ERC721, Ownable {
         _safeMint(msg.sender, _propertyId);
     }
 
-    function getProperty(uint256 _propertyId) external view returns (string memory, uint256, bool) {
-        return (properties[_propertyId].propertyAddress, properties[_propertyId].price, properties[_propertyId].isSold);
+function getProperty(uint256 _propertyId) 
+external view returns (string memory, uint256, bool) {
+return (properties[_propertyId].propertyAddress, 
+properties[_propertyId].price, properties[_propertyId].isSold);
 
 ___________
 
