@@ -11,6 +11,6 @@ By leveraging smart contracts & NFT deeds on Dogechain network (wrapped Doge), u
 
 This dApp will be FREE FOR USERS, OPEN SOURCE, and DECENTRALIZED. It will work from a lot-line color-coded (NFT deed or not) map. It offers legal contracts for the regions and uses a hash identifier so on chain data is minimized to only eSigned contract pages & minted NFT upon recordation.
 
-Local third-party intermediaries such as realtors, lenders, and title companies can pay a fee for the lead generation from the platform if the user requests their assistance. The DApp auto generates area vendors by pulling them offline. 
+Local third-party intermediaries such as realtors, lenders, and title companies can pay a fee for the lead generation from the platform if the user requests their assistance. The DApp auto generates area vendors by 1. promoting registered users (vendors) first and then 2. pulling them offline. 
 
 The platform will be built on Dogechain, based on Polygon Edge and using Solidity, with transactions conducted using Dogecoin for low fees and fast transactions. This will revolutionize the real estate industry and contribute to a more decentralized and equitable global economy, allowing people who cannot afford or do not want to use third-party intermediary services to transact freely.
