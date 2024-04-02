@@ -1,7 +1,7 @@
 
 Revolutionizing Real Estate with Blockchain
 
-In the world of finance, Satoshi and Billy revolutionized money, while Vitalik and friends created a decentralized internet. The next big challenge lies in REAL ESTATE, THE WORLD'S LARGEST ASSET CLASS. 
+In the world of finance, Satoshi and Billy revolutionized money, while Vitalik and frens created a decentralized internet. The next big challenge lies in REAL ESTATE, THE WORLD'S LARGEST ASSET CLASS. 
 
 Outdated systems have long plagued the industry, causing unnecessary hardships for people, particularly in less free societies where citizens don't have the resources to hire middlemen to enforce their private property rights or sell their real estate for them. Power hungry governments don't necessarily want great citizen property rights, and they are the keepers the deeds, which is a conflict of interest.  
 
