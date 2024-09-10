@@ -1,4 +1,97 @@
 // SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract RealEstateDapp is ERC20, Ownable {
+    // Structure to hold property details
+    struct Property {
+        uint256 id;
+        string location;
+        uint256 price;
+        address owner;
+        bool forSale;
+        string metadataHash; // Hash of metadata stored off-chain, could include legal updates or vendor info
+    }
+
+    // Mapping of property IDs to Property structs
+    mapping(uint256 => Property) public properties;
+    uint256 public nextPropertyId;
+
+    // Event for property listing
+    event PropertyListed(uint256 indexed id, string location, uint256 price, address indexed owner);
+
+    constructor(string memory name, string memory symbol) ERC20(name, symbol) {
+        nextPropertyId = 1;
+    }
+
+    // Function to list a property for sale
+    function listProperty(string memory _location, uint256 _price, string memory _metadataHash) public {
+        require(_price > 0, "Price must be greater than 0");
+        properties[nextPropertyId] = Property(nextPropertyId, _location, _price, msg.sender, true, _metadataHash);
+        emit PropertyListed(nextPropertyId, _location, _price, msg.sender);
+        nextPropertyId++;
+    }
+
+    // Function to buy a property with ERC20 tokens
+    function buyProperty(uint256 _id) public {
+        Property storage property = properties[_id];
+        require(property.forSale, "Property is not for sale");
+        require(balanceOf(msg.sender) >= property.price, "Insufficient balance");
+
+        // Transfer tokens from buyer to seller
+        _transfer(msg.sender, property.owner, property.price);
+
+        // Update property status
+        property.forSale = false;
+        property.owner = msg.sender;
+
+        // Here you might want to trigger an off-chain event to update or fetch new metadata
+    }
+
+    // Function to update property metadata, could be called by AI or owner
+    function updateMetadata(uint256 _id, string memory _newMetadataHash) public {
+        Property storage property = properties[_id];
+        require(msg.sender == property.owner || msg.sender == owner(), "Only owner or property owner can update metadata");
+        property.metadataHash = _newMetadataHash;
+    }
+
+    // Function to get property details
+    function getProperty(uint256 _id) public view returns (uint256, string memory, uint256, address, bool, string memory) {
+        Property memory property = properties[_id];
+        return (property.id, property.location, property.price, property.owner, property.forSale, property.metadataHash);
+    }
+
+    // Function to mint new tokens, only callable by the owner (for simplicity, not recommended for real use without proper governance)
+    function mint(address to, uint256 amount) public onlyOwner {
+        _mint(to, amount);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
